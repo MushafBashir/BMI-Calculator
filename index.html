@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        body{
+            background:rgb(240, 209, 209);
+            color:rgb(247, 240, 240);
+            /* text-align:center; */
+        }
+        .container{
+            width:400px;
+            height:500px;
+            margin:0px auto;
+            background:rgba(189, 65, 65, 0.719);
+            margin-top:60px;
+            border-radius:24px;
+        }
+        h1{
+            text-align:center;
+        }
+        .hw{
+      padding-left:24px;
+      margin-top:22px;
+        }
+        label{
+            font-size:18px;
+        }
+        .bmibar{
+            width:140px;
+            outline: none;
+            padding:2px 0px;
+
+        }
+        button{
+            margin-left:100px;
+            padding:8px 14px;
+            border-radius:8px;
+            color:rgb(247, 240, 240);
+            background: rgb(101, 101, 245);
+            border:none;
+            cursor:pointer;
+        }
+        .result{
+            font-size: 20px;
+            border:1px solid white;
+            width:230px;
+            margin:14px 0px;
+            margin-left:40px;
+            padding-left:4px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="container">
+        <h1>BMI</h1>
+        <div class="hw">
+            <label>HEIGHT(ft): </label>
+            <input type="number" placeholder="Enter your Height" class="bmibar" id="search-height">
+            <br>
+            <br>
+            <label>WEIGHT(kg): </label>
+            <input type="number" placeholder="Enter Your Weight " class="bmibar" id="search-weight">
+            <br>
+            <br>
+            <button id="btn">Calculate Your BMI</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    
+
+
+    <script>
+     let btn=document.getElementById('btn');
+     btn.addEventListener('click', calculate);
+
+     function calculate(){
+        let searchHeight= document.getElementById('search-height');
+        let searchWeight= document.getElementById('search-weight');
+        let hw= document.getElementById('result');
+
+        let num = searchWeight.value/((searchHeight.value*0.3048)*(searchHeight.value*0.3048));
+
+ while(hw.firstChild){
+            hw.removeChild(hw.firstChild);
+         }
+        // let resultInput = document.createElement('p');
+        // resultInput.textContent = searchWeight.value/((searchHeight.value*0.3048)*(searchHeight.value*0.3048));
+        // resultInput.classList.add('result');
+        // hw.appendChild(resultInput);
+        if(searchHeight.value=="" || searchWeight.value==""){
+         let resultInput = document.createElement('p');
+         resultInput.textContent = "";
+         resultInput.classList.add('wrong-result');
+         hw.appendChild(resultInput);
+        }else{
+
+         let resultInput = document.createElement('p');
+         resultInput.textContent = `Your BMI is: ${num.toFixed(2)}`;
+         resultInput.classList.add('result');
+         hw.appendChild(resultInput);
+
+     
+        }
+
+    
+        searchHeight.value="";
+        searchWeight.value="";
+
+     }
+
+    </script>
+</body>
+</html>
